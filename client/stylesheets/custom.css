@@ -1,0 +1,73 @@
+body {
+  background-color: #F6F4F1;
+}
+
+.minheight {
+  min-height: 400px;
+}
+
+.row.valign {
+  width: 100%;
+}
+
+.navbar-fixed {
+  position: fixed;
+}
+
+.brand-logo img {
+  margin-top: 5px;
+}
+
+.transparent {
+  box-shadow: none;
+}
+
+.parallax-container {
+  height: 750px;
+}
+
+.parallax img {
+  max-height:100%;
+}
+
+#video-background { 
+  position:relative;/* absolute;
+  bottom: 50%; 
+  right: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+*/
+  min-width: 100%; 
+  min-height: 100%; 
+  width: auto; 
+  height: auto;
+  z-index: -1000; 
+  overflow: hidden;
+}
+
+a.at-link:visited {
+  color: #039be5;
+}
+
+a:hover, a:visited, button {
+  text-decoration: none;
+  color: white;
+}
+
+.collapsible-header {
+  height: inherit;
+  padding: 0.01rem 1rem;
+}
+
+.collapsible-body.row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.text-shadow {
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+}

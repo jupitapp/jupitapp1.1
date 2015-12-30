@@ -1,0 +1,48 @@
+#intro-banner.parallax-container.valign-wrapper
+  .section.container.white-text.center.valign
+      h1.header Don't Wait to Dream
+      p.flow-text Plan your vacation today
+  .parallax
+    img(src="landing-page-bg.jpg")
+    //
+      video#video-background(preload autoplay loop muted)
+        source(src="/landing-bg-vid1.mp4" type="video/mp4")
+        Your browser does not support the video tag.
+
+#thesis.section.container.minheight.valign-wrapper
+  .row.center.valign
+      p.flow-text Why should travel planning be so hard?
+      p.flow-text We make it exciting to plan your next dream trip.
+      p
+        a.waves-effect.waves-light.btn(href="{{pathFor 'plan'}}") Try it now
+      p(style="margin:0") It's Free
+
+
+footer.page-footer.teal(style="padding-top:0")
+  .container
+    .row(style="margin-bottom:0")
+
+      nav.transparent
+       .col.l4.s12.push-l8.nav-wrapper(style="padding-top:0.25rem")
+        ul
+          li
+            a.white-text(href="mailto:jupit@jupit.co?Subject=Hello")
+              i.fa.fa-envelope.fa-2x
+          li
+            a.white-text(href="https://instagram.com/jupitapp/")
+              i.fa.fa-instagram.fa-2x
+          li
+            a.white-text(href="https://twitter.com/jupitapp/")
+              i.fa.fa-twitter.fa-2x
+          li
+            a.white-text(href="https://www.facebook.com/Jupit-844668892306888/")
+              i.fa.fa-facebook.fa-2x
+
+  .footer-copyright
+    .container
+      span Made by
+        a(href="http://mptysquare.com")
+         strong.white-text MptySquare
+        a(href="http://github.com/MptySquare")
+          i.fa.fa-github.fa-lg.white-text
+ 

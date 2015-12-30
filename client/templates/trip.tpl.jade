@@ -1,0 +1,26 @@
+.row
+ .col.s12
+  ul.tabs
+    li.tab.col.s3
+      a(href="#lodgingResults") Places to stay
+    li.tab.col.s3
+      a(href="#eventResults") Things to do
+    li.tab.col.s3
+      a(href="#travelResults") Flights
+
+ .col.s12
+  .row#lodgingResults
+    each lodgingResults
+      +lodgingResult
+  
+  .row#eventResults
+    each eventResults
+      +eventResult
+  
+  .row#travelResults
+    if hasTravelResults
+      each travelResults
+        +travelResult
+    else
+      h3.light.center No flights returned
+

@@ -1,0 +1,13 @@
+.col.l3.m6.s12
+  .card.lodging.medium
+    .grey-text.text-darken-2
+      if hasPhotos
+        .card-image.valign-wrapper
+          a(href="#{provider.url}" target="_blank")
+            img.valign(src="#{getPhoto}")
+      .card-content.center
+        p #{attr.heading} for $#{price.nightly} a night
+    
+    .card-action
+      a(href="#{provider.url}" target="_blank") Visit Link
+      a.modal-trigger.save-to-trip(href="##{id}") Save to Trip

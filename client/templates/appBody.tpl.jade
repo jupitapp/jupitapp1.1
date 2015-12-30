@@ -1,0 +1,24 @@
+nav.white(role="navigation")
+  .nav-wrapper.container
+    a#logo-container.brand-logo(href="/")
+      img(src="/branding/jupitlogo_sidebyside.png")
+    a.button-collapse.grey-text.text-darken-2(href="#" data-activates="mobile-nav")
+      i.material-icons menu
+    ul.right.hide-on-med-and-down
+      li
+        a.grey-text.text-darken-2(href="{{pathFor 'plan'}}") Plan
+      if currentUser
+        li
+          a.grey-text.text-darken-2(href="#{profileUrl}") Profile
+      +atNavButton
+      
+    ul.side-nav.center#mobile-nav
+      li
+        a.grey-text.text-darken-2(href="{{pathFor 'plan'}}") Plan
+      if currentUser
+        li
+          a.grey-text.text-darken-2(href="#{profileUrl}") Profile
+      +atNavButton
+
+.section
+  +yield

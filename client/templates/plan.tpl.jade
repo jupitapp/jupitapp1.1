@@ -1,0 +1,31 @@
+.container
+  .section.row
+    .col.s12.z-depth-1.white
+      h1.header.center Where do you want to go?
+      .row.section
+
+        form#plan.section.col.s10.push-s1.center
+          .row.section
+            .input-field.col.s12.m8.push-m2.l6.push-l3
+              input#city.center(type="text" name="city" placeholder="Miami, FL, United States")
+          .row.center
+            .input-field.col.s6.m4.push-m2
+              input#flightCheck.center(type="checkbox" name="flightCheck")
+              label(for="flightCheck") need a flight?
+            .input-field.col.s6.m4.push-m1
+              input#dateCheck.center(type="checkbox")
+              label(for="dateCheck") let's talk dates
+
+          #fromLocation.row.section.hidden
+            p.flow-text.center Where are you coming from?
+            .input-field.col.s12.m8.push-m2.l6.push-l3
+              input#fromCity.center(type="text" placeholder="Los Angeles, CA, United States")
+
+          #datePicker.row.section.hidden
+            p.flow-text.center When are you going?
+            .input-field.col.s12.m8.push-m2.l6.push-l3
+              input#dateStart.center(type="date" class="datepicker")
+
+          .row.section
+            .input-field
+              button.btn.waves-effect.waves-light(type="submit" name="action") Go

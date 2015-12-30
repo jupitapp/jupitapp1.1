@@ -1,0 +1,18 @@
+.modal-content
+  
+  h5 Save this result
+    i.material-icons.right.modal-close close
+  form.row
+    .input-field.col.m6.s12
+      select.playlistOption
+        option(value="" disabled selected) Pick a Playlist
+        each playlists
+          option(value="{{_id}}") #{name}
+        option(value="new") + New Playlist
+    
+    .col.m6.s12.input-field.new-playlist.hidden
+      input.name(type="text" placeholder="Name your new playlist")
+      p Rerun your search after making a new playlist
+
+.modal-footer
+  a.save-result.modal-action.modal-close.waves-effect.waves-green.btn-flat(href="#") Save

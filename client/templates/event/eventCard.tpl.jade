@@ -1,0 +1,18 @@
+.col.l3.m6.s12
+    .card.event.medium
+      .grey-text.text-darken-2
+        if hasPhotos
+          .card-image.valign-wrapper
+            a(href="#{getUrl}" target="_blank")
+              img.valign(src="#{getPhoto}")
+        .card-content.center
+          p.grey-text.text-darken-3 #{getTitle}
+        if fromSeatgeek
+          p #{type} at #{venue.name} in #{venue.display_location}
+          p Prices between $#{stats.lowest_price} and $#{stats.highest_price}
+        else
+          p.truncate #{description.text}
+      
+      .card-action
+        a(href="#{getUrl}" target="_blank") Visit Link
+        a.modal-trigger.save-to-trip(href="##{id}") Save to Trip

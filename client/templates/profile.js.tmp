@@ -1,0 +1,33 @@
+Template.profile.events({
+  'click .remove-event': function(e) {
+    e.preventDefault();
+    var playlist = Playlists.findOne({'ownerId':Meteor.userId()});
+    if (!playlist) {
+      alert('Something went wrong. Cannot remove item.');
+    } else {
+      Meteor.call('removeFromPlaylist', playlist._id, this);
+    }
+  }
+});
+
+Template.profile.helpers({
+  playlists: function() {
+    var lists = Playlists.find({ownerId: Meteor.userId()}).fetch();
+    for (var i=0; i<lists.length; i++) {
+      lists[i]['order'] = i;
+    }
+    return lists;
+  },
+});
+
+Template.playlist.helpers({
+  first: function() {
+    return (this.order == 0);
+  }
+});
+
+Template.profile.onRendered(function() {
+  this.$('.collapsible').collapsible({
+    accordion : false // A setting that changes the collapsible behavior to expandable instead of the default accordion style
+  });
+});

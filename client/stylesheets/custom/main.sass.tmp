@@ -1,0 +1,45 @@
+body
+  background-color: #F6F4F1
+
+
+.navbar-fixed 
+  position: fixed
+
+
+.brand-logo
+  img
+    margin-top: 10px
+
+.transparent
+  box-shadow: none
+
+.parallax-container
+  height: 750px
+
+#video-background 
+  position:relative
+  min-width: 100%
+  min-height: 100% 
+  width: auto
+  height: auto
+  z-index: -1000 
+  overflow: hidden
+ //
+  bottom: 50% 
+  right: 50%;
+  -webkit-transform: translateX(-50%) translateY(-50%);
+  transform: translateX(-50%) translateY(-50%);
+
+a:hover, a:visited, button
+  text-decoration: none
+  color: white
+
+.collapsible-body.row
+  margin-left: 0
+  margin-right: 0
+
+.hidden
+  display: none
+
+.text-shadow 
+  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2)
