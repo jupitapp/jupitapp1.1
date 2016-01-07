@@ -6,14 +6,29 @@
           img(src="#{getPhoto}")
         span.card-title.text-shadow Flight from #{orig} to #{dest}
       else
-      .card-content.row
-        i.fa.fa-plane.fa-5x.col.s4
-        span.card-title.grey-text.text-darken-3.col.s8 Flight from #{orig} to #{dest}
-      .card-content
-        p.flow-text #{saleTotal}
-    
+      .card-content.row(style="margin-bottom: 0px; padding-bottom: 5px")
+        span.col.s4(style="padding-right:0px; margin-bottom: 0px; margin-top: 0px")
+          i.fa.fa-plane.fa-5x(style="background-image: url('#{airlines}'); width: 70px; height: 70px; background-repeat: no-repeat; color: rgba(97, 97, 97, 0);margin-top: 14px;")
+          p(style="font-size:14px") #{flightNumber}
+        span.card-title.grey-text.text-darken-3.col.s8 #{orig} to #{dest}
+          h5(style="font-weight:300;") #{sale}
+      h6.center-align Total Flight Time #{flightTime}
+      .card-content.row(style="padding: 0px")
+          span.row
+            span.col.s2
+              p &nbsp;
+            span.col.s4
+              h6.center-align Arrival
+              h6.center-align(style="font-weight:300; margin-top: 0px;") #{arrivalTime}
+            span.col.s4
+              h6.center-align Departure
+              h6.center-align(style="font-weight:300; margin-top: 0px;") #{departureTime}
+            span.col.s2
+              p &nbsp;
+
     .card-action
       if isProfile
         a.modal-trigger.remove-event(href="##{id}") Remove from Trip
       else
         a.modal-trigger.save-to-trip(href="##{id}") Save to Trip
+      a.modal-trigger.save-to-trip(href="#", style="float:right;") Visit Link
