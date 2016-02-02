@@ -7,8 +7,28 @@ getTravel = function() {
     }
 }
 
+getLodging = function() {
+    var results = Results.findOne({'searchID':Session.get('searchID')}, {lodging:1});
+    if (results && results.hasOwnProperty('lodging')) {
+      return results.lodging;
+    } else {
+      return [];
+    }
+}
+
+getEvent = function() {
+    var results = Results.findOne({'searchID':Session.get('searchID')}, {source:1, events:1});
+    if (results && results.hasOwnProperty('events')) {
+      return results.events;
+    } else {
+      return [];
+    }
+}
+
 Template.trip.onRendered(function(){
   this.$('ul.tabs').tabs();
+
+  this.$('img.lazy').unveil();
 
   // Watch for new playlists
   //var modalPlaylists = 
@@ -28,10 +48,14 @@ Template.travelResult.onRendered(function(){
 
 Template.lodgingResult.onRendered(function(){
   this.$('select').material_select();
+  this.$('img.lazy').unveil(600);
+  $(window).trigger("lookup");
 });
 
 Template.eventResult.onRendered(function(){
   this.$('select').material_select();
+  this.$('img.lazy').unveil(600);
+  $(window).trigger("lookup");
 });
 
 Template.trip.helpers({
@@ -50,21 +74,11 @@ Template.trip.helpers({
   },
 
   eventResults: function() {
-    var results = Results.findOne({'searchID':Session.get('searchID')}, {source:1, events:1});
-    if (results && results.hasOwnProperty('events')) {
-      return results.events;
-    } else {
-      return [];
-    }
+    return getEvent();
   },
 
   lodgingResults: function() {
-    var results = Results.findOne({'searchID':Session.get('searchID')}, {lodging:1});
-    if (results && results.hasOwnProperty('lodging')) {
-      return results.lodging;
-    } else {
-      return [];
-    }
+    return getLodging();
   },
 
   travelResults: function() {
@@ -73,6 +87,14 @@ Template.trip.helpers({
 
   hasTravelResults: function() {
     return (getTravel().length > 0)
+  },
+
+  hasEventResults: function() {
+    return (getEvent().length > 0)
+  },
+
+  hasLodgingResults: function() {
+    return (getLodging().length > 0)
   }
 
 });

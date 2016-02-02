@@ -22,6 +22,9 @@ Template.eventCard.helpers(
       img = this.logo.url
     return img
 
+  getBackgroud: ()->
+    return "bg.png"
+
   getTitle: ()->
     title = ''
     

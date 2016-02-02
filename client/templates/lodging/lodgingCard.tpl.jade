@@ -4,7 +4,7 @@
       if hasPhotos
         .card-image.valign-wrapper
           a(href="#{provider.url}" target="_blank")
-            img.valign(src="#{getPhoto}")
+            img.valign.lazy(src="#{getBackgroud}" data-src="#{getPhoto}")
       .card-content.center
         p #{attr.heading} for $#{price.nightly} a night
     

@@ -4,4 +4,7 @@ Template.lodgingCard.helpers(
 
   getPhoto: ()->
     return this.photos[0].large
+
+  getBackgroud: ()->
+    return "bg.png"
 )

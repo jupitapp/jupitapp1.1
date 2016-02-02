@@ -40,6 +40,5 @@ Template.travelCard.helpers(
     return this.photos[0].large
 
   sale: ()->
-    console.log("123")
     return this.saleTotal.slice(0,3) + " " + this.saleTotal.slice(3)
 )

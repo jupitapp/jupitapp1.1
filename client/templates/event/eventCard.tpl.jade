@@ -4,7 +4,7 @@
         if hasPhotos
           .card-image.valign-wrapper
             a(href="#{getUrl}" target="_blank")
-              img.valign(src="#{getPhoto}")
+              img.valign.lazy(src="#{getBackgroud}" data-src="#{getPhoto}")
         .card-content.center
           p.grey-text.text-darken-3 #{getTitle}
         if fromSeatgeek
