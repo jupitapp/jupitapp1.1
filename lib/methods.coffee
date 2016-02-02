@@ -13,7 +13,7 @@ getAirportCode = (filters, params, callback)->
         resContent = JSON.parse(results.content[9..results.content.length-2])
         console.log resContent
         params.request.slice[0].destination = resContent.airports[0].code
-  
+
         iata_url="https://airport.api.aero/airport/nearest/#{filters.from_city.lat}/#{filters.from_city.lng}?user_key=9740853f634f8ca3da48d217674d7171"
         Meteor.http.call('GET', iata_url, (err, results) ->
           if err
@@ -87,7 +87,7 @@ Meteor.methods(
   seatGeek: (searchID, filters) ->
     apiurl = 'http://api.seatgeek.com/2/events/'
     params =
-      per_page: 10
+      per_page: 80
       sort: 'score.desc'
     ###
     if (filters.budget.max)
@@ -96,12 +96,12 @@ Meteor.methods(
     if (filters.budget.min)
       params['lowest_price.gte'] = filters.budget.min
     ###
-    
+
     params.lat = filters.city.lat
     params.lon = filters.city.lng
     if filters.dateStart isnt undefined
       params['datetime_utc.gte'] = moment(filters.dateStart, "D MMMM, YYYY").format("YYYY-MM-DD")
-    
+
     Meteor.http.call('GET', apiurl,
       params:params
      ,
