@@ -73,6 +73,7 @@ Meteor.methods(
 
     params.latitude = filters.city.lat
     params.longitude = filters.city.lng
+    params.resultsperpage = 42
 
     Meteor.http.call('GET', apiurl,
       params:params
@@ -87,7 +88,7 @@ Meteor.methods(
   seatGeek: (searchID, filters) ->
     apiurl = 'http://api.seatgeek.com/2/events/'
     params =
-      per_page: 80
+      per_page: 20
       sort: 'score.desc'
     ###
     if (filters.budget.max)
