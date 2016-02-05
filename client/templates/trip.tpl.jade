@@ -13,20 +13,12 @@
     if hasLodgingResults
       each lodgingResults
         +lodgingResult
-    else
-      div.spinner#lodging-loading
-        div.double-bounce1
-        div.double-bounce2
 
   .row#eventResults
     if hasEventResults
       each eventResults
         +eventResult
-    else
-      div.spinner#event-loading
-        div.double-bounce1
-        div.double-bounce2
-  
+
   .row#travelResults
     if hasTravelResults
       each travelResults
