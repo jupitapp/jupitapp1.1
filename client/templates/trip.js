@@ -28,7 +28,8 @@ getEvent = function() {
 Template.trip.onRendered(function(){
   this.$('ul.tabs').tabs();
 
-  this.$('img.lazy').unveil();
+  // for lazy image load
+  // this.$('img.lazy').unveil();
 
   // Watch for new playlists
   //var modalPlaylists = 

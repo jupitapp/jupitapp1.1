@@ -73,7 +73,7 @@ Meteor.methods(
 
     params.latitude = filters.city.lat
     params.longitude = filters.city.lng
-    params.resultsperpage = 42
+    params.resultsperpage = 50
 
     Meteor.http.call('GET', apiurl,
       params:params
