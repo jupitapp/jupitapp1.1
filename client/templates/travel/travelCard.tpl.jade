@@ -27,8 +27,8 @@
               p &nbsp;
 
     .card-action
+      a(href="#{visitLink}", target="_blank") Visit Link
       if isProfile
-        a.modal-trigger.remove-event(href="##{id}") Remove from Trip
+        a.modal-trigger.remove-event(href="##{id}" , style="float:right; margin-right:0px;") Remove from Trip
       else
-        a.modal-trigger.save-to-trip(href="##{id}") Save to Trip
-      a.modal-trigger.save-to-trip(href="#", style="float:right; margin-right:0px;") Visit Link
+        a.modal-trigger.save-to-trip(href="##{id}" , style="float:right; margin-right:0px;") Save to Trip

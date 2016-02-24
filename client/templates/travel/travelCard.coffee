@@ -41,4 +41,8 @@ Template.travelCard.helpers(
 
   sale: ()->
     return this.saleTotal.slice(0,3) + " " + this.saleTotal.slice(3)
+
+  visitLink: ()->
+    return "https://www.kayak.com/flights/" + this.pricing[0].fare[0].origin + "-" + this.pricing[0].fare[0].destination + "/" + moment(this.slice[0].segment[0].leg[0].departureTime).format('YYYY-MM-DD')
+
 )
