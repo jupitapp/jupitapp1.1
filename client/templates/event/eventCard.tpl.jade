@@ -2,7 +2,7 @@
     .card.event.medium
       .grey-text.text-darken-2
         if hasPhotos
-          .card-image.valign-wrapper
+          .card-image(style="max-height=230px")
             a(href="#{getUrl}" target="_blank")
               img.valign.lazy(src="#{getPhoto}")
         .card-content.center
