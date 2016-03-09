@@ -4,6 +4,12 @@ Template.plan.onRendered( () ->
     selectYears: 15
   )
 
+  $('#divpopup').hide()
+  $('#popup').show()
+  $('#popup').click ->
+    $('#divpopup').slideToggle()
+    return
+
   window.filters = {}
 
   this.autorun( () ->
