@@ -47,3 +47,6 @@ sanjo:jasmine
 momentjs:moment
 reywood:iron-router-ga
 luisalmeida:unveil
+accounts-google
+accounts-ui
+service-configuration
