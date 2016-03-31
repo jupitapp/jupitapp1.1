@@ -1,0 +1,17 @@
+{
+  "public": {
+    "GOOGLE_MAPS_API": "AIzaSyAIhyJwEZDVInUD4dtT-xTWolnAFDyzOt4",
+    "ga": {
+      "id": "UA-67502469-1",
+      "trackUserId": true
+    }
+  },
+  "private": {
+    "GOOGLE_QPX_API": "AIzaSyBilXpNsv4rUBFUq0HjQB4pkuqCX26yzRk",
+    "FACEBOOK_APP_ID": "1578856639099938",
+    "FACEBOOK_SECRET": "d5a9ec4e593a09436372526ac9373e3c",
+    "GOOGLE_LOGIN_CLIENT_ID": "577150100908-ukm428bclhpbi1sdsv2uvjqkmq5n8acg.apps.googleusercontent.com",
+    "GOOGLE_LOGIN_EMAIL": "jupitco@gmail.com",
+    "GOOGLE_LOGIN_SECRET": "nLfX79KSZY_uzRatkeVCyeKR"
+  }
+}
