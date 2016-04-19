@@ -28,6 +28,14 @@ getEvent = function() {
 Template.trip.onRendered(function(){
   this.$('ul.tabs').tabs();
 
+  $.getJSON('http://blog.jupit.co/wp-json/wp/v2/posts?per_page=1&_embed', function(response) {
+    var data;
+    data = response[0];
+    $('.blog-tile a').attr('href', data.link);
+    $('.blog-tile a img').attr('src', data._embedded['https://api.w.org/featuredmedia'][0]['media_details']['sizes']['medium_large']['source_url']);
+    $('.blog-tile p').html(data.title.rendered);
+  });
+
   // for lazy image load
   // this.$('img.lazy').unveil();
 
