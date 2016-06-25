@@ -1,6 +1,7 @@
 Router.configure(
   loadingTemplate: 'loading'
   layoutTemplate: 'appBody'
+  index: 'index'
   waitOn: () ->
     return [
     ]
@@ -14,12 +15,13 @@ Router.route('/trip', ()->
   )
 )
 
+
 Router.map( () ->
   this.route('home',
     path: '/'
     onBeforeAction: () ->
       if !Meteor.user()
-        this.layout('landingBody')
+        this.layout('index')
       else
         this.redirect('plan')
       this.next()

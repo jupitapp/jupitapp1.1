@@ -15,7 +15,7 @@ Template.plan.onRendered( () ->
   $.getJSON 'http://blog.jupit.co/wp-json/wp/v2/posts?per_page=1&_embed', (response) ->
     data = response[0]
     $('.blog-tile a').attr 'href', data.link
-    $('.blog-tile a img').attr 'src', data._embedded['https://api.w.org/featuredmedia'][0]['media_details']['sizes']['medium']['source_url']
+    $('.blog-tile a img').attr 'src', data._embedded['wp:featuredmedia'][0]['media_details']['sizes']['medium']['source_url']
     $('.blog-tile p').html data.title.rendered
     return
 
