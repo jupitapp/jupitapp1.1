@@ -9,7 +9,7 @@ Meteor.methods(
   sendEmail: (field) ->
     console.log('sending email')
 
-    check([field.to, field.from, field.subject, field.text, field.html], [String])
+    
 
     this.unblock()
 
