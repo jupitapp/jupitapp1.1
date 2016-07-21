@@ -1,0 +1,12 @@
+{
+  "public": {
+    "GOOGLE_MAPS_API": "AIzaSyAIhyJwEZDVInUD4dtT-xTWolnAFDyzOt4",
+    "ga": {
+      "id": "UA-67502469-1",
+      "trackUserId": true
+    }
+  },
+  "private": {
+    "GOOGLE_QPX_API": "AIzaSyBilXpNsv4rUBFUq0HjQB4pkuqCX26yzRk"
+  }
+}
