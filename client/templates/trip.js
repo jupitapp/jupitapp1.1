@@ -28,19 +28,27 @@ getEvent = function() {
 Template.trip.onRendered(function(){
   this.$('ul.tabs').tabs();
 
-  $.getJSON('http://blog.jupit.co/wp-json/wp/v2/posts?per_page=1&_embed', function(response) {
+  $.getJSON('http://blog.jupit.co/wp-json/wp/v2/posts?per_page=3&_embed', function(response) {
     var data;
     data = response[0];
-    $('.blog-tile a').attr('href', data.link);
-    $('.blog-tile a img').attr('src', data._embedded['wp:featuredmedia'][0]['media_details']['sizes']['medium_large']['source_url']);
-    $('.blog-tile p').html(data.title.rendered);
+    $('.blog-tile.one a').attr('href', data.link);
+    $('.blog-tile.one a img').attr('src', data._embedded['wp:featuredmedia'][0]['media_details']['sizes']['medium_large']['source_url']);
+    $('.blog-tile.one p').html(data.title.rendered);
+    data = response[1];
+    $('.blog-tile.two a').attr('href', data.link);
+    $('.blog-tile.two a img').attr('src', data._embedded['wp:featuredmedia'][0]['media_details']['sizes']['medium_large']['source_url']);
+    $('.blog-tile.two p').html(data.title.rendered);
+    data = response[2];
+    $('.blog-tile.three a').attr('href', data.link);
+    $('.blog-tile.three a img').attr('src', data._embedded['wp:featuredmedia'][0]['media_details']['sizes']['medium_large']['source_url']);
+    $('.blog-tile.three p').html(data.title.rendered);
   });
 
   // for lazy image load
   // this.$('img.lazy').unveil();
 
   // Watch for new playlists
-  //var modalPlaylists = 
+  //var modalPlaylists =
 
   /*this.autorun( function() {
     var $container = $('.masonry-grid');
@@ -115,12 +123,12 @@ Template.trip.events({
     if (tar.val() == 'new') {
       if (newList.hasClass('hidden')) {
         newList.removeClass('hidden');
-      } 
+      }
     } else if (!newList.hasClass('hidden')) {
       newList.addClass('hidden');
     }
   },
-  
+
   'click .save-to-trip.modal-trigger': function(e) {
     e.preventDefault();
     if (!Meteor.user()) {
@@ -150,8 +158,8 @@ Template.trip.events({
         Meteor.call('createPlaylist', Meteor.userId(), newPlaylistName, tar);
         playlist = Playlists.findOne({
           'ownerId':Meteor.userId(),
-          'name':newPlaylistName 
-        }); 
+          'name':newPlaylistName
+        });
 
         // Add new playlist to options
         /*selects = $('select.playlistOption');

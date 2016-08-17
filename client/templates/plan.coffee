@@ -12,11 +12,19 @@ Template.plan.onRendered( () ->
 
   window.filters = {}
 
-  $.getJSON 'http://blog.jupit.co/wp-json/wp/v2/posts?per_page=1&_embed', (response) ->
+  $.getJSON 'http://blog.jupit.co/wp-json/wp/v2/posts?per_page=3&_embed', (response) ->
     data = response[0]
-    $('.blog-tile a').attr 'href', data.link
-    $('.blog-tile a img').attr 'src', data._embedded['wp:featuredmedia'][0]['media_details']['sizes']['medium']['source_url']
-    $('.blog-tile p').html data.title.rendered
+    $('.blog-tile.one a').attr 'href', data.link
+    $('.blog-tile.one a img').attr 'src', data._embedded['wp:featuredmedia'][0]['media_details']['sizes']['medium']['source_url']
+    $('.blog-tile.one p').html data.title.rendered
+    data = response[1]
+    $('.blog-tile.two a').attr 'href', data.link
+    $('.blog-tile.two a img').attr 'src', data._embedded['wp:featuredmedia'][0]['media_details']['sizes']['medium']['source_url']
+    $('.blog-tile.two p').html data.title.rendered
+    data = response[2]
+    $('.blog-tile.three a').attr 'href', data.link
+    $('.blog-tile.three a img').attr 'src', data._embedded['wp:featuredmedia'][0]['media_details']['sizes']['medium']['source_url']
+    $('.blog-tile.three p').html data.title.rendered
     return
 
   this.autorun( () ->
@@ -45,7 +53,7 @@ prepFilters = (e, callback) ->
   if window.filters.dateCheck
     window.filters.dateStart = $('#dateStart').val()
   callback(window.filters)
-  
+
 Template.plan.events(
   'click #flightCheck': (e) ->
     window.filters.flightCheck = flightCheck = e.target.checked
@@ -61,7 +69,7 @@ Template.plan.events(
         $('#fromLocation').addClass('hidden')
       if $('#dateCheck').attr('disabled') isnt undefined
         $('#dateCheck').removeAttr('disabled')
-      
+
   'click #dateCheck': (e) ->
     window.filters.dateCheck = dateCheck = e.target.checked
     if dateCheck and $('#datePicker').hasClass('hidden')
