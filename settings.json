@@ -1,6 +1,7 @@
 {
   "public": {
-    "GOOGLE_MAPS_API": "AIzaSyAIhyJwEZDVInUD4dtT-xTWolnAFDyzOt4",
+    "GOOGLE_MAPS_API": "AIzaSyCNw8Q6TFBiLKja5ml3Ywv_IhfSAFdXI1g",
+    "GOOGLE_API_KEY": "AIzaSyCNw8Q6TFBiLKja5ml3Ywv_IhfSAFdXI1g",
     "ga": {
       "id": "UA-67502469-1",
       "trackUserId": true

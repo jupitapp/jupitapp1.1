@@ -3,11 +3,13 @@
     .grey-text.text-darken-2
       if hasPhotos
         .card-image(style="max-height=230px")
-          a(href="#{provider.url}" target="_blank")
-            img.valign.lazy(src="#{getPhoto}")
+          a(href="#" target="_blank")
+            img.valign.lazy(style="max-height:230px;", src="#{getPhoto}")
       .card-content.center
-        p #{attr.heading} for $#{price.nightly} a night
+        // p #{attr.heading} for $#{price.nightly} a night
+        p #{name}
 
     .card-action
-      a(href="#{provider.url}" target="_blank") Visit Link
+      if getLink != null
+        a(href="#{getLink}" target="_blank") Visit Link
       a.modal-trigger.save-to-trip(href="##{id}", style="float:right; margin-right:0px;") Save to Trip

@@ -11,7 +11,7 @@ getAirportCode = (filters, params, callback)->
       else
         console.log('Got destination city airport..')
         resContent = JSON.parse(results.content[9..results.content.length-2])
-        console.log resContent
+        # console.log resContent
         params.request.slice[0].destination = resContent.airports[0].code
 
         iata_url="https://airport.api.aero/airport/nearest/#{filters.from_city.lat}/#{filters.from_city.lng}?user_key=9740853f634f8ca3da48d217674d7171"
@@ -21,7 +21,7 @@ getAirportCode = (filters, params, callback)->
           else
             console.log('Got origin city airport')
             resContent = JSON.parse(results.content[9..results.content.length-2])
-            console.log resContent
+            # console.log resContent
             params.request.slice[0].origin = resContent.airports[0].code
             callback(filters, params)
         )
@@ -58,7 +58,7 @@ Meteor.methods(
                     console.log("null trips")
                   else
                     console.log('Got Google QPX results')
-                    console.log results
+                    # console.log results
                     Meteor.call('insertResult', searchID, travel: results.data.trips.tripOption, filters)
                     # This throws a tripOption error when data isn't returned
             )
@@ -140,6 +140,51 @@ Meteor.methods(
           Meteor.call('insertResult', searchID, events:results.data.events, filters)
     )
 
+  googlePlaceRestaurants: (searchID, filters) ->
+    apiurl = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json'
+    #token = 'BFK432G7D4H3FACVOLBI'
+    params = {'key': Meteor.settings.public.GOOGLE_API_KEY}
+    #params.price = filters.freeOnly ? 'free' : 'paid'
+    params['location'] = filters.city.lat + ',' + filters.city.lng
+    params['radius'] = 40
+    params['type'] = 'lodging'
+
+    Meteor.http.call('GET', apiurl, {params: params},
+      (error, results) ->
+        console.log('Got restaurant results')
+        if error
+          console.log error
+          console.log params
+        else
+          console.log results
+          #for event in results.data.events
+          #  event['source'] = {}
+          #  event['source']['api'] = 'eventbrite'
+          #Meteor.call('insertResult', searchID, events:results.data.events, filters)
+    )
+
+  googlePlaceLodging: (searchID, filters) ->
+    apiurl = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json'
+    #token = 'BFK432G7D4H3FACVOLBI'
+    params = {'key': Meteor.settings.public.GOOGLE_API_KEY}
+    #params.price = filters.freeOnly ? 'free' : 'paid'
+    params['location'] = filters.city.lat + ',' + filters.city.lng
+    params['radius'] = 25000
+    params['type'] = 'lodging'
+
+    Meteor.http.call('GET', apiurl, {params: params},
+      (error, results) ->
+        console.log('Got restaurant results')
+        if error
+          console.log error
+          console.log params
+        else
+          console.log results
+          for hotel in results.data.results
+            hotel['source'] = {}
+            hotel['source']['api'] = 'GooglePlaceLoding'
+          Meteor.call('insertResult', searchID, lodging:results.data.results, filters)
+    )
 
   insertResult: (searchID, results, filters) ->
     if ( !Results.findOne({searchID:searchID}) )

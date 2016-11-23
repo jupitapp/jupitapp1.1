@@ -91,7 +91,8 @@ Template.plan.events(
         Meteor.call('googleQPX', searchID, filters)
       Meteor.call('eventBrite', searchID, filters)
       Meteor.call('seatGeek', searchID, filters)
-      Meteor.call('zilyo', searchID, filters)
+      # Meteor.call('zilyo', searchID, filters)
+      Meteor.call('googlePlaceLodging', searchID, filters)
       Router.go('trip')
       return false
     )
