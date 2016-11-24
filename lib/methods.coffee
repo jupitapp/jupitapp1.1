@@ -149,19 +149,20 @@ Meteor.methods(
     params['radius'] = 40
     params['type'] = 'lodging'
 
-    Meteor.http.call('GET', apiurl, {params: params, headers: {"Access-Control-Allow-Origin": "*"}},
-      (error, results) ->
-        console.log('Got restaurant results')
-        if error
-          console.log error
-          console.log params
-        else
-          console.log results
-          #for event in results.data.events
-          #  event['source'] = {}
-          #  event['source']['api'] = 'eventbrite'
-          #Meteor.call('insertResult', searchID, events:results.data.events, filters)
-    )
+    if Meteor.isServer
+      Meteor.http.call('GET', apiurl, {params: params, headers: {"Access-Control-Allow-Origin": "*"}},
+        (error, results) ->
+          console.log('Got restaurant results')
+          if error
+            console.log error
+            console.log params
+          else
+            console.log results
+            #for event in results.data.events
+            #  event['source'] = {}
+            #  event['source']['api'] = 'eventbrite'
+            #Meteor.call('insertResult', searchID, events:results.data.events, filters)
+      )
 
   googlePlaceLodging: (searchID, filters) ->
     apiurl = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json'
@@ -172,19 +173,20 @@ Meteor.methods(
     params['radius'] = 25000
     params['type'] = 'lodging'
 
-    Meteor.http.call('GET', apiurl, {params: params, headers: {"Access-Control-Allow-Origin": "*"}},
-      (error, results) ->
-        console.log('Got restaurant results')
-        if error
-          console.log error
-          console.log params
-        else
-          console.log results
-          for hotel in results.data.results
-            hotel['source'] = {}
-            hotel['source']['api'] = 'GooglePlaceLoding'
-          Meteor.call('insertResult', searchID, lodging:results.data.results, filters)
-    )
+    if Meteor.isServer
+      Meteor.http.call('GET', apiurl, {params: params, headers: {"Access-Control-Allow-Origin": "*"}},
+        (error, results) ->
+          console.log('Got restaurant results')
+          if error
+            console.log error
+            console.log params
+          else
+            console.log results
+            for hotel in results.data.results
+              hotel['source'] = {}
+              hotel['source']['api'] = 'GooglePlaceLoding'
+            Meteor.call('insertResult', searchID, lodging:results.data.results, filters)
+      )
 
   insertResult: (searchID, results, filters) ->
     if ( !Results.findOne({searchID:searchID}) )
