@@ -149,7 +149,7 @@ Meteor.methods(
     params['radius'] = 40
     params['type'] = 'lodging'
 
-    Meteor.http.call('GET', apiurl, {params: params},
+    Meteor.http.call('GET', apiurl, {params: params, headers: {"Access-Control-Allow-Origin": "*"}},
       (error, results) ->
         console.log('Got restaurant results')
         if error
@@ -172,7 +172,7 @@ Meteor.methods(
     params['radius'] = 25000
     params['type'] = 'lodging'
 
-    Meteor.http.call('GET', apiurl, {params: params},
+    Meteor.http.call('GET', apiurl, {params: params, headers: {"Access-Control-Allow-Origin": "*"}},
       (error, results) ->
         console.log('Got restaurant results')
         if error
