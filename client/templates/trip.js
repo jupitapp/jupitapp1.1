@@ -25,6 +25,15 @@ getEvent = function() {
     }
 }
 
+getRestaurant = function() {
+    var results = Results.findOne({'searchID':Session.get('searchID')}, {restaurant:1});
+    if (results && results.hasOwnProperty('restaurant')) {
+      return results.restaurant;
+    } else {
+      return [];
+    }
+}
+
 Template.trip.onRendered(function(){
   this.$('ul.tabs').tabs();
 
@@ -75,6 +84,12 @@ Template.eventResult.onRendered(function(){
   $(window).trigger("lookup");
 });
 
+Template.restaurantResult.onRendered(function(){
+  this.$('select').material_select();
+  this.$('img.lazy').unveil(600);
+  $(window).trigger("lookup");
+});
+
 Template.trip.helpers({
   playlists: function() {
     console.log('getting playlists');
@@ -98,6 +113,10 @@ Template.trip.helpers({
     return getLodging();
   },
 
+  restaurantResults: function() {
+    return getRestaurant();
+  },
+
   travelResults: function() {
     return getTravel();
   },
@@ -112,6 +131,10 @@ Template.trip.helpers({
 
   hasLodgingResults: function() {
     return (getLodging().length > 0)
+  },
+
+  hasRestaurantResults: function() {
+    return (getRestaurant().length > 0)
   }
 
 });
@@ -180,33 +203,33 @@ Template.trip.events({
       if (tar.parents('.modal').hasClass('event')) {
       for (var i=0; i<playlist.events.length; i++) {
         if (playlist.events[i]['id'] == this.id) {
-          save = false;
-          break;
+            save = false;
+            break;
+          }
         }
-      }
-      if (save) {
-        Meteor.call('addEventToPlaylist', playlist._id, this);
-      }
-      } else if (tar.parents('.modal').hasClass('lodging')) {
-      for (var i=0; i<playlist.lodging.length; i++) {
-        if (playlist.lodging[i]['id'] == this.id) {
-          save = false;
-          break;
+        if (save) {
+          Meteor.call('addEventToPlaylist', playlist._id, this);
         }
-      }
-      if (save) {
-        Meteor.call('addLodgingToPlaylist', playlist._id, this);
-      }
-      } else if (tar.parents('.modal').hasClass('travel')) {
-      for (var i=0; i<playlist.travel.length; i++) {
-        if (playlist.travel[i]['id'] == this.id) {
-          save = false;
-          break;
+        } else if (tar.parents('.modal').hasClass('lodging')) {
+        for (var i=0; i<playlist.lodging.length; i++) {
+          if (playlist.lodging[i]['id'] == this.id) {
+            save = false;
+            break;
+          }
         }
-      }
-      if (save) {
-        Meteor.call('addTravelToPlaylist', playlist._id, this);
-      }
+        if (save) {
+          Meteor.call('addLodgingToPlaylist', playlist._id, this);
+        }
+        } else if (tar.parents('.modal').hasClass('travel')) {
+        for (var i=0; i<playlist.travel.length; i++) {
+          if (playlist.travel[i]['id'] == this.id) {
+            save = false;
+            break;
+          }
+        }
+        if (save) {
+          Meteor.call('addTravelToPlaylist', playlist._id, this);
+        }
       }
     }
   }

@@ -4,6 +4,8 @@
     li.tab.col.s3
       a(href="#lodgingResults") Places to stay
     li.tab.col.s3
+      a(href="#restaurantResults") Restaurants
+    li.tab.col.s3
       a(href="#eventResults") Things to do
     li.tab.col.s3
       a(href="#travelResults") Flights
@@ -27,6 +29,11 @@
     if hasLodgingResults
       each lodgingResults
         +lodgingResult
+
+  .row#restaurantResults
+    if hasRestaurantResults
+      each restaurantResults
+        +restaurantResult
 
   .row#eventResults
     if hasEventResults

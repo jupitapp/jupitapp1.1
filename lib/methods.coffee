@@ -146,8 +146,8 @@ Meteor.methods(
     params = {'key': Meteor.settings.public.GOOGLE_API_KEY}
     #params.price = filters.freeOnly ? 'free' : 'paid'
     params['location'] = filters.city.lat + ',' + filters.city.lng
-    params['radius'] = 40
-    params['type'] = 'lodging'
+    params['radius'] = 25000
+    params['type'] = 'restaurant'
 
     if Meteor.isServer
       Meteor.http.call('GET', apiurl, {params: params, headers: {"Access-Control-Allow-Origin": "*"}},
@@ -157,11 +157,11 @@ Meteor.methods(
             console.log error
             console.log params
           else
-            console.log results
-            #for event in results.data.events
-            #  event['source'] = {}
-            #  event['source']['api'] = 'eventbrite'
-            #Meteor.call('insertResult', searchID, events:results.data.events, filters)
+            # console.log results
+            for restaurant in results.data.results
+              restaurant['source'] = {}
+              restaurant['source']['api'] = 'GooglePlaceRestaurants'
+            Meteor.call('insertResult', searchID, restaurant:results.data.results, filters)
       )
 
   googlePlaceLodging: (searchID, filters) ->
@@ -176,12 +176,12 @@ Meteor.methods(
     if Meteor.isServer
       Meteor.http.call('GET', apiurl, {params: params, headers: {"Access-Control-Allow-Origin": "*"}},
         (error, results) ->
-          console.log('Got restaurant results')
+          console.log('Got lodgin results')
           if error
             console.log error
             console.log params
           else
-            console.log results
+            # console.log results
             for hotel in results.data.results
               hotel['source'] = {}
               hotel['source']['api'] = 'GooglePlaceLoding'
@@ -197,6 +197,7 @@ Meteor.methods(
         events: []
         lodging: []
         travel: []
+        restaurant: []
       )
     if (results.hasOwnProperty('events'))
       Results.update({searchID:searchID}, {$addToSet: {events: {$each:results.events}}})
@@ -204,6 +205,8 @@ Meteor.methods(
       Results.update({searchID:searchID}, {$addToSet: {lodging: {$each:results.lodging}}})
     if (results.hasOwnProperty('travel'))
       Results.update({searchID:searchID}, {$addToSet: {travel: {$each:results.travel}}})
+    if (results.hasOwnProperty('restaurant'))
+      Results.update({searchID:searchID}, {$addToSet: {restaurant: {$each:results.restaurant}}})
 
 
   createPlaylist: (ownerId, name, tar) ->
@@ -214,6 +217,7 @@ Meteor.methods(
         events: []
         travel: []
         lodging: []
+        restaurant: []
       )
 
   removeFromPlaylist: (playlist_id, result, type) ->
@@ -234,6 +238,8 @@ Meteor.methods(
   addEventToPlaylist: (playlist_id, result) ->
     Playlists.update({_id:playlist_id}, {$push:{events:result}})
 
+  addRestaurantToPlaylist: (playlist_id, result) ->
+    Playlists.update({_id:playlist_id}, {$push:{restaurant:result}})
 
   emptyPlaylists: () ->
     Playlists.remove({})

@@ -89,10 +89,11 @@ Template.plan.events(
       if filters.flightCheck and filters.from_city isnt undefined and filters.dateCheck and filters.dateStart isnt undefined
         console.log 'Calling airfare API...'
         Meteor.call('googleQPX', searchID, filters)
+      Meteor.call('googlePlaceLodging', searchID, filters)
       Meteor.call('eventBrite', searchID, filters)
       Meteor.call('seatGeek', searchID, filters)
       # Meteor.call('zilyo', searchID, filters)
-      Meteor.call('googlePlaceLodging', searchID, filters)
+      Meteor.call('googlePlaceRestaurants', searchID, filters)
       Router.go('trip')
       return false
     )
