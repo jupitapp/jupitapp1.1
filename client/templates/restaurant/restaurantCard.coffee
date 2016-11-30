@@ -7,7 +7,7 @@ Template.restaurantCard.helpers(
     if this.photos == undefined
       return this.icon
     else
-      return  "https://maps.googleapis.com/maps/api/place/photo?key=" + Meteor.settings.public.GOOGLE_API_KEY + "&maxwidth=288&photoreference=" + this.photos[0].photo_reference;
+      return  "https://maps.googleapis.com/maps/api/place/photo?key=" + Meteor.settings.public.GOOGLE_MAPS_API + "&maxwidth=288&photoreference=" + this.photos[0].photo_reference;
 
   getLink: ()->
     if this.photos != undefined && this.photos[0].html_attributions != undefined
